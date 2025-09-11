@@ -1,113 +1,126 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Formulario de contacto</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<style>
-  /* Pega aquí TODO tu CSS que compartiste */
-  @import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100..900;1,100..900&display=swap");
-
-  /* Variables y estilos base (el CSS completo que compartiste) */
-  /* ... pega aquí todo tu CSS ... */
-
-  body {
-    background-color: var(--color-background);
-    font-family: var(--font-family-body);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
-
-  .form-container {
-    max-width: 700px;
-    width: 100%;
-    margin: 50px 20px;
-  }
-
-  .confirmation-message {
-    display: none;
-    background-color: #00cc66;
-    color: white;
-    font-weight: bold;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .confirmation-message.show {
-    display: block;
-    animation: fadeOut 3s forwards;
-  }
-
-  @keyframes fadeOut {
-    0% { opacity:1; }
-    80% { opacity:1; }
-    100% { opacity:0; }
-  }
-</style>
-</head>
-<body>
-  <div class="form-container">
-    <div class="confirmation-message" id="confirmationMessage">¡Mensaje enviado!</div>
-
-    <form class="fs-form" id="contactForm" action="https://formspree.io/f/mandvkwv" method="POST">
-      <fieldset>
-        <label class="fs-label" for="name">Nombre *</label>
-        <input class="fs-input" type="text" name="name" id="name" placeholder="Escribe tu nombre" required>
-
-        <label class="fs-label" for="email">Email *</label>
-        <input class="fs-input" type="email" name="email" id="email" placeholder="Escribe tu correo" required>
-
-        <label class="fs-label" for="telefono">Teléfono</label>
-        <input class="fs-input" type="tel" name="telefono" id="telefono" placeholder="Escribe tu teléfono">
-
-        <label class="fs-label" for="website">Sitio web</label>
-        <input class="fs-input" type="url" name="website" id="website" placeholder="Escribe tu sitio web">
-
-        <label class="fs-label" for="subject">Asunto *</label>
-        <input class="fs-input" type="text" name="subject" id="subject" placeholder="Escribe un asunto" required>
-
-        <label class="fs-label" for="message">Mensaje *</label>
-        <textarea class="fs-textarea" name="message" id="message" rows="6" placeholder="Escribe tu mensaje..." required></textarea>
-      </fieldset>
-
-      <div class="fs-button-group">
-        <button type="submit" class="fs-button">Enviar</button>
-      </div>
-    </form>
+<form
+  id="contact-form"
+  action="https://formspree.io/f/mandvkwv"
+  class="fs-form"
+  target="_top"
+  method="POST"
+>
+  <div class="fs-field">
+    <label class="fs-label" for="name">Nombre</label>
+    <input class="fs-input" id="name" name="name" required />
   </div>
 
+  <div class="fs-field">
+    <label class="fs-label" for="email">Email</label>
+    <input class="fs-input" id="email" name="email" type="email" required />
+    <p class="fs-description">
+      Este correo será usado para responderte.
+    </p>
+  </div>
+
+  <div class="fs-field">
+    <label class="fs-label" for="message">Mensaje</label>
+    <textarea
+      class="fs-textarea"
+      id="message"
+      name="message"
+      required
+    ></textarea>
+    <p class="fs-description">¿Qué te gustaría consultar?</p>
+  </div>
+
+  <div class="fs-button-group">
+    <button class="fs-button" type="submit">Enviar</button>
+  </div>
+</form>
+
+<!-- Modal de confirmación -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <p id="modal-message">✅ Mensaje enviado con éxito</p>
+    <button id="close-modal" class="fs-button">Cerrar</button>
+  </div>
+</div>
+
+<style>
+  /* Estilos del modal */
+  .modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: green;
+  }
+
+  #close-modal {
+    background-color: #b64e08;
+  }
+</style>
+
 <script>
-  const form = document.getElementById('contactForm');
-  const confirmation = document.getElementById('confirmationMessage');
+  const form = document.getElementById("contact-form");
+  const modal = document.getElementById("modal");
+  const modalMessage = document.getElementById("modal-message");
+  const closeModal = document.getElementById("close-modal");
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
-    const formData = new FormData(form);
+    const data = new FormData(form);
 
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if(response.ok){
-        confirmation.classList.add('show');
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
         form.reset();
-        setTimeout(() => confirmation.classList.remove('show'), 3000);
+        modalMessage.textContent = "✅ Mensaje enviado con éxito";
+        modalMessage.style.color = "green";
+        modal.style.display = "flex";
+
+        // Cerrar automáticamente después de 3 segundos
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 3000);
       } else {
-        alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
+        modalMessage.textContent = "❌ Error al enviar. Intenta de nuevo.";
+        modalMessage.style.color = "red";
+        modal.style.display = "flex";
       }
-    }).catch(err => {
-      alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
-    });
+    } catch (error) {
+      modalMessage.textContent = "⚠️ Ocurrió un error. Revisa tu conexión.";
+      modalMessage.style.color = "orange";
+      modal.style.display = "flex";
+    }
+  });
+
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
   });
 </script>
-</body>
-</html>
