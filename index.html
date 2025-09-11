@@ -14,9 +14,18 @@
     --blanco: #f0f0f0;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
 
-  html, body { height: 100%; scroll-behavior: smooth; overflow-y: scroll; }
+  html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+  }
 
   body {
     color: var(--blanco);
@@ -32,79 +41,176 @@
   }
 
   header {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    background-color: var(--azul-oscuro); padding: 15px 0; text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--azul-oscuro);
+    padding: 15px 0;
+    text-align: center;
   }
 
   nav a {
-    color: var(--blanco); margin: 0 15px; text-decoration: none; font-weight: bold;
+    color: var(--blanco);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s;
   }
 
-  nav a:hover { color: var(--azul-suave); }
+  nav a:hover {
+    color: var(--azul-suave);
+  }
 
-  .fullpage { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; }
+  .fullpage {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
 
   section {
-    scroll-snap-align: start; min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 40px 20px; text-align: center;
-    opacity: 0; transform: translateY(50px);
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
-  section.visible { opacity: 1; transform: translateY(0); }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-  .inicio { background: linear-gradient(to right, var(--azul-medio), var(--azul-claro)); }
+  .inicio {
+    background: linear-gradient(to right, var(--azul-medio), var(--azul-claro));
+  }
+
   .inicio h1 {
-    font-size: 3rem; margin-bottom: 20px; opacity: 0; transform: translateY(-20px);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-20px);
     transition: opacity 1s ease-out, transform 1s ease-out;
   }
-  .inicio h1.visible { opacity: 1; transform: translateY(0); }
 
-  .servicios { background-color: var(--azul-suave); color: var(--blanco); }
+  .inicio h1.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .servicios {
+    background-color: var(--azul-suave);
+    color: var(--blanco);
+  }
+
   .servicio-item {
-    margin: 20px 0; padding: 20px; background-color: var(--azul-medio);
-    border-radius: 10px; width: 80%; max-width: 600px;
-    opacity: 0; transform: translateY(30px);
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--azul-medio);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out, transform 0.3s ease;
   }
-  .servicio-item:hover { transform: translateY(0) scale(1.05); }
-  .servicio-item.visible { opacity: 1; transform: translateY(0); }
 
-  .sobre-nosotros { background-color: var(--azul-claro); color: var(--blanco); }
+  .servicio-item:hover {
+    transform: translateY(0) scale(1.05);
+  }
 
+  .servicio-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sobre-nosotros {
+    background-color: var(--azul-claro);
+    color: var(--blanco);
+  }
+
+  /* Contacto */
   .contacto form {
-    max-width: 500px; width: 100%; display: flex; flex-direction: column;
-    opacity: 0; transform: translateY(30px);
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
-  .contacto form.visible { opacity: 1; transform: translateY(0); }
-  .contacto input, .contacto textarea { padding: 10px; margin: 10px 0; border: none; border-radius: 5px; }
-  .contacto button {
-    padding: 10px; background-color: var(--azul-oscuro); color: var(--blanco);
-    border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s;
-  }
-  .contacto button:hover { background-color: var(--azul-claro); }
 
-  /* MODAL DE CONFIRMACIÓN */
-  .modal {
-    display: none; position: fixed; z-index: 1002; left: 0; top: 0;
-    width: 100%; height: 100%; background-color: rgba(13,27,42,0.7);
-    display: flex; align-items: center; justify-content: center;
+  .contacto form.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .modal-content {
-    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-claro));
-    padding: 25px 40px; border-radius: 12px; text-align: center;
-    max-width: 400px; width: 90%; color: var(--blanco);
-    font-size: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    animation: modalFade 0.5s ease-out;
+
+  .contacto input, .contacto textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
   }
-  #close-modal {
-    margin-top: 15px; padding: 10px 20px; background-color: var(--azul-suave);
-    color: var(--blanco); border: none; border-radius: 8px; cursor: pointer;
+
+  .contacto button {
+    padding: 10px;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background 0.3s;
   }
+
+  .contacto button:hover {
+    background-color: var(--azul-claro);
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13,27,42,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-claro));
+    padding: 25px 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    color: var(--blanco);
+    font-size: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: modalFade 0.5s ease-out;
+  }
+
+  #close-modal {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--azul-suave);
+    color: var(--blanco);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
   #close-modal:hover { background-color: var(--azul-claro); }
 
   @keyframes modalFade {
@@ -112,18 +218,41 @@
     to { transform: translateY(0); opacity: 1; }
   }
 
-  footer {
-    text-align: center; padding: 20px; background-color: var(--azul-oscuro);
-    color: var(--blanco); width: 100%;
+  .instagram-link {
+    margin-top: 15px;
+    font-size: 24px;
+    color: var(--blanco);
+    text-decoration: none;
+    transition: color 0.3s;
   }
 
-  /* Botón ir al inicio */
-  #topButton {
-    position: fixed; bottom: 30px; right: 30px; padding: 12px 18px; font-size: 16px;
-    border: none; border-radius: 50px; background-color: var(--azul-oscuro);
-    color: var(--blanco); cursor: pointer; opacity: 0.7; transition: opacity 0.3s, transform 0.3s;
-    z-index: 1001; display: none;
+  .instagram-link:hover { color: var(--azul-suave); }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    width: 100%;
   }
+
+  #topButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1001;
+    display: none;
+  }
+
   #topButton:hover { opacity: 1; transform: scale(1.1); }
 </style>
 </head>
@@ -177,7 +306,12 @@
       <button type="submit">Enviar</button>
     </form>
 
-    <!-- MODAL DE CONFIRMACIÓN -->
+    <!-- Icono Instagram -->
+    <a href="https://www.instagram.com/energyproductoraok/" target="_blank" class="instagram-link">
+      📸 Síguenos en Instagram
+    </a>
+
+    <!-- Modal de confirmación -->
     <div id="modal" class="modal">
       <div class="modal-content">
         <p id="modal-message"></p>
@@ -204,7 +338,7 @@
     });
   });
 
-  // Animaciones al aparecer las secciones y servicios
+  // Animaciones al aparecer las secciones
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
@@ -215,14 +349,20 @@
       }
     });
   }, { threshold: 0.3 });
+
   document.querySelectorAll('section, .servicio-item, .contacto form').forEach(el => observer.observe(el));
 
   // Botón ir al inicio
   const topButton = document.getElementById('topButton');
-  window.addEventListener('scroll', () => { topButton.style.display = window.scrollY > 300 ? 'block' : 'none'; });
-  function scrollToTop() { document.querySelector('#inicio').scrollIntoView({behavior: 'smooth'}); }
+  window.addEventListener('scroll', () => {
+    topButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
 
-  // ===== FORMULARIO FUNCIONAL CON MODAL =====
+  function scrollToTop() {
+    document.querySelector('#inicio').scrollIntoView({behavior: 'smooth'});
+  }
+
+  // Formulario con Formspree + modal
   const form = document.getElementById('contact-form');
   const modal = document.getElementById('modal');
   const modalMessage = document.getElementById('modal-message');
@@ -254,7 +394,7 @@
     }
   });
 
-  closeModal.addEventListener('click', () => { modal.style.display = 'none'; });
+  closeModal.addEventListener('click', () => modal.style.display = 'none');
 </script>
 
 </body>
