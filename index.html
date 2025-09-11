@@ -12,144 +12,96 @@
       padding: 0;
     }
 
-    .contact-section {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 30px;
+    /* Botón flotante circular */
+    #contact-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
       background-color: #0b3d91;
-      border-radius: 15px;
-      color: white;
-      position: relative;
-    }
-
-    .contact-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .contact-section form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact-section input,
-    .contact-section textarea {
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      width: 100%;
-    }
-
-    .contact-section button {
-      background-color: #3b6fb0;
-      color: white;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .contact-section button:hover {
-      background-color: #2d5591;
-    }
-
-    .confirmation-message {
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #00cc66;
-      padding: 12px 20px;
-      border-radius: 8px;
-      color: white;
-      font-weight: bold;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 10px;
-      opacity: 0;
-      transition: opacity 0.5s, top 0.5s;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s, transform 0.3s;
     }
 
-    .confirmation-message.show {
-      top: -80px;
-      opacity: 1;
+    #contact-button:hover {
+      background-color: #3b6fb0;
+      transform: scale(1.1);
     }
 
-    .check-icon {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid white;
-      position: relative;
-      transform: rotate(45deg);
-    }
-
-    .check-icon::after {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 0px;
-      width: 6px;
-      height: 12px;
-      border-right: 2px solid white;
-      border-bottom: 2px solid white;
+    #contact-button svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
     }
   </style>
 </head>
 <body>
 
-  <div class="contact-section">
-    <div class="confirmation-message" id="confirmationMessage">
-      <span class="check-icon"></span> ¡Mensaje enviado!
-    </div>
+  <h1 style="text-align:center; margin-top:50px; color:#0b3d91;">Bienvenido a Productora Energy</h1>
+  <p style="text-align:center; color:#0b3d91;">Haz clic en el botón de mensaje para enviarnos un mensaje.</p>
 
-    <h2>Contáctanos</h2>
-
-    <form id="contactForm" action="https://formspree.io/f/mandvkwv" method="POST">
-      <label>
-        Tu correo:
-        <input type="email" name="email" required>
-      </label>
-      <label>
-        Tu mensaje:
-        <textarea name="message" rows="6" required></textarea>
-      </label>
-      <button type="submit">Enviar</button>
-    </form>
+  <!-- Botón flotante -->
+  <div id="contact-button" title="Contáctanos">
+    <!-- Icono de mensaje -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5h-13A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5v-11zM5.5 5h13a1.5 1.5 0 0 1 1.5 1.5v11a1.5 1.5 0 0 1-1.5 1.5h-13a1.5 1.5 0 0 1-1.5-1.5v-11A1.5 1.5 0 0 1 5.5 5zm3.5 6l2.5 2.5L14.5 11l4 4h-13l4-4z"/>
+    </svg>
   </div>
 
+  <!-- Formspree Formbutton -->
+  <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
   <script>
-    const form = document.getElementById('contactForm');
-    const confirmation = document.getElementById('confirmationMessage');
+    window.formbutton = window.formbutton || function(){(formbutton.q = formbutton.q || []).push(arguments)};
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          confirmation.classList.add('show');
-          form.reset();
-          setTimeout(() => {
-            confirmation.classList.remove('show');
-          }, 3000);
-        } else {
-          alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
+    // Crear formulario
+    formbutton("create", {
+      action: "https://formspree.io/f/mandvkwv",
+      title: "Contáctanos",
+      fields: [
+        { 
+          type: "email", 
+          label: "Tu correo:", 
+          name: "email",
+          required: true,
+          placeholder: "tu@email.com"
+        },
+        {
+          type: "textarea",
+          label: "Mensaje:",
+          name: "message",
+          required: true,
+          placeholder: "Escribe tu mensaje aquí..."
+        },
+        { type: "submit" }      
+      ],
+      styles: {
+        title: {
+          backgroundColor: "#0b3d91",
+          color: "#ffffff",
+          fontSize: "18px",
+          fontWeight: "bold"
+        },
+        button: {
+          backgroundColor: "#3b6fb0",
+          color: "#ffffff",
+          fontSize: "16px",
+          padding: "10px 20px",
+          borderRadius: "8px",
+          cursor: "pointer"
         }
-      })
-      .catch(error => {
-        alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
-      });
+      }
+    });
+
+    // Mostrar formulario al hacer clic en el botón
+    document.getElementById('contact-button').addEventListener('click', function() {
+      formbutton("open");
     });
   </script>
 
