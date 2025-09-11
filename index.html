@@ -1,69 +1,196 @@
-<!-- ===== FORMULARIO DE CONTACTO ===== -->
-<form
-  id="contact-form"
-  action="https://formspree.io/f/mzzawpgj"
-  method="POST"
->
-  <label>
-    Tu email:
-    <input type="email" name="email" required>
-  </label>
-  <br><br>
-  <label>
-    Tu mensaje:
-    <textarea name="message" required></textarea>
-  </label>
-  <br><br>
-  <button type="submit">Enviar</button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario Premium</title>
+<style>
+  /* ===== BODY Y FONDO HERO ===== */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
 
-<!-- ===== MODAL DE CONFIRMACIÓN ===== -->
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #e6f0ff, #99ccff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ===== PARTICULAS SUTILES ===== */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 102, 204, 0.3);
+    animation: float 15s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0);}
+    50% { transform: translateY(-50px) translateX(50px);}
+    100% { transform: translateY(0) translateX(0);}
+  }
+
+  /* ===== FORMULARIO CENTRADO ===== */
+  .form-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+  }
+
+  form {
+    background: linear-gradient(135deg, #cce0ff, #99ccff);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,128,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  form:hover {
+    transform: translateY(-5px);
+  }
+
+  h2 {
+    color: #003366;
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: #003366;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  input, textarea {
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #3399ff;
+    outline: none;
+    font-size: 16px;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #0066cc;
+    box-shadow: 0 0 12px #3399ff;
+  }
+
+  /* ===== BOTÓN PREMIUM ANIMADO ===== */
+  button[type="submit"], #close-modal {
+    position: relative;
+    background: linear-gradient(270deg, #3399ff, #0066cc, #004c99);
+    background-size: 600% 600%;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: gradientAnimation 8s ease infinite;
+    overflow: hidden;
+  }
+
+  button[type="submit"]:hover, #close-modal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,128,0.3);
+  }
+
+  @keyframes gradientAnimation {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* ===== MODAL PREMIUM ===== */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,51,102,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, #cce0ff, #99ccff);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 12px 30px rgba(0,0,128,0.25);
+    animation: fadeIn 0.5s ease;
+  }
+
+  #modal-message {
+    font-size: 18px;
+    margin-bottom: 18px;
+    color: #003366;
+    font-weight: bold;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+  }
+</style>
+</head>
+<body>
+<div class="hero">
+  <!-- Partículas -->
+  <div class="particle" style="width:15px;height:15px;top:20%;left:15%;animation-duration:12s;"></div>
+  <div class="particle" style="width:20px;height:20px;top:50%;left:80%;animation-duration:18s;"></div>
+  <div class="particle" style="width:10px;height:10px;top:70%;left:30%;animation-duration:14s;"></div>
+  <div class="particle" style="width:25px;height:25px;top:35%;left:60%;animation-duration:20s;"></div>
+  
+  <!-- Formulario -->
+  <div class="form-wrapper">
+    <form id="contact-form" action="https://formspree.io/f/mzzawpgj" method="POST">
+      <h2>Contáctanos</h2>
+      <label>
+        Tu email:
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Tu mensaje:
+        <textarea name="message" required></textarea>
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <p id="modal-message">✅ Mensaje enviado con éxito</p>
     <button id="close-modal">Cerrar</button>
   </div>
 </div>
-
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    font-family: Arial, sans-serif;
-  }
-  #modal-message {
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
-  #close-modal {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  #close-modal:hover {
-    background: #0056b3;
-  }
-</style>
 
 <script>
   const form = document.getElementById("contact-form");
@@ -85,17 +212,17 @@
       if (response.ok) {
         form.reset();
         modalMessage.textContent = "✅ Mensaje enviado con éxito";
-        modalMessage.style.color = "green";
+        modalMessage.style.color = "#003366";
         modal.style.display = "flex";
         setTimeout(() => { modal.style.display = "none"; }, 3000);
       } else {
         modalMessage.textContent = "❌ Error al enviar. Intenta de nuevo.";
-        modalMessage.style.color = "red";
+        modalMessage.style.color = "#003366";
         modal.style.display = "flex";
       }
     } catch (error) {
       modalMessage.textContent = "⚠️ Ocurrió un error. Revisa tu conexión.";
-      modalMessage.style.color = "orange";
+      modalMessage.style.color = "#003366";
       modal.style.display = "flex";
     }
   });
