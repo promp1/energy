@@ -13,12 +13,11 @@
     }
 
     .contact-section {
-      max-width: 700px;
+      max-width: 600px;
       margin: 50px auto;
       padding: 30px;
       background-color: #0b3d91;
-      border-radius: 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      border-radius: 15px;
       color: white;
       position: relative;
     }
@@ -26,11 +25,6 @@
     .contact-section h2 {
       text-align: center;
       margin-bottom: 20px;
-    }
-
-    .contact-section p.description {
-      text-align: center;
-      margin-bottom: 30px;
     }
 
     .contact-section form {
@@ -63,10 +57,9 @@
       background-color: #2d5591;
     }
 
-    /* Mensaje de confirmación */
     .confirmation-message {
       position: absolute;
-      top: -70px;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%);
       background-color: #00cc66;
@@ -82,11 +75,10 @@
     }
 
     .confirmation-message.show {
-      top: -90px;
+      top: -80px;
       opacity: 1;
     }
 
-    /* Icono de check */
     .check-icon {
       display: inline-block;
       width: 20px;
@@ -107,7 +99,6 @@
       border-right: 2px solid white;
       border-bottom: 2px solid white;
     }
-
   </style>
 </head>
 <body>
@@ -118,18 +109,18 @@
     </div>
 
     <h2>Contáctanos</h2>
-    <p class="description">Envía tu mensaje y nos pondremos en contacto contigo.</p>
 
     <form id="contactForm" action="https://formspree.io/f/mandvkwv" method="POST">
-      <input type="text" name="name" placeholder="Tu nombre" required>
-      <input type="email" name="email" placeholder="Tu correo electrónico" required>
-      <textarea name="message" placeholder="Tu mensaje" rows="6" required></textarea>
-      <button type="submit">Enviar Mensaje</button>
+      <label>
+        Tu correo:
+        <input type="email" name="email" required>
+      </label>
+      <label>
+        Tu mensaje:
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button type="submit">Enviar</button>
     </form>
-
-    <p style="text-align:center; margin-top:20px; font-size:14px;">
-      📧 Todos los mensajes llegarán a <strong>productoraenergy@gmail.com</strong>
-    </p>
   </div>
 
   <script>
@@ -138,24 +129,25 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-
       const formData = new FormData(form);
 
       fetch(form.action, {
         method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
-      }).then(response => {
+      })
+      .then(response => {
         if (response.ok) {
-          confirmation.classList.add('show'); // mostrar mensaje
-          form.reset(); // limpiar campos
+          confirmation.classList.add('show');
+          form.reset();
           setTimeout(() => {
-            confirmation.classList.remove('show'); // ocultar mensaje
+            confirmation.classList.remove('show');
           }, 3000);
         } else {
           alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
         }
-      }).catch(error => {
+      })
+      .catch(error => {
         alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
       });
     });
