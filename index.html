@@ -1,198 +1,104 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulario Contacto</title>
+<section id="contacto" class="contacto">
+  <h2>Contacto</h2>
+  <form id="contact-form" action="https://formspree.io/f/mzzawpgj" method="POST">
+    <input type="text" name="name" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Correo electrónico" required>
+    <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p id="modal-message"></p>
+      <button id="close-modal">Cerrar</button>
+    </div>
+  </div>
+</section>
+
 <style>
-  :root {
-    --azul-oscuro: #003366;
-    --azul-claro: #3399ff;
-    --blanco: #ffffff;
-  }
-
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #e6f0ff, #99ccff);
-    overflow: hidden;
-  }
-
-  /* ===== FORMULARIO ===== */
-  .contacto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 10;
-    position: relative;
-  }
-
-  .contacto form {
-    max-width: 500px;
+  /* MODAL ESTILO PREMIUM */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
     width: 100%;
+    height: 100%;
+    background-color: rgba(13,27,42,0.7);
     display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    background-color: rgba(255,255,255,0.9);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    align-items: center;
+    justify-content: center;
   }
 
-  .contacto form.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .modal-content {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-claro));
+    padding: 25px 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    color: var(--blanco);
+    font-size: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: modalFade 0.5s ease-out;
   }
 
-  .contacto input, .contacto textarea {
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-  }
-
-  .contacto button {
-    padding: 10px;
-    background-color: var(--azul-oscuro);
+  #close-modal {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--azul-suave);
     color: var(--blanco);
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
   }
 
-  .contacto button:hover {
+  #close-modal:hover {
     background-color: var(--azul-claro);
   }
 
-  /* ===== ICONO INSTAGRAM ===== */
-  .social-icons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
+  @keyframes modalFade {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
-
-  .social-icons a {
-    margin: 0 5px;
-    transition: transform 0.3s;
-  }
-
-  .social-icons a:hover {
-    transform: scale(1.2);
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-
-  /* ===== PARTICULAS ===== */
-  canvas#particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* <-- Permite interactuar con el formulario */
-  }
-
 </style>
-</head>
-<body>
-
-<canvas id="particles"></canvas>
-
-<div class="contacto">
-  <form id="contact-form">
-    <h2>Contáctanos</h2>
-    <input type="email" name="email" placeholder="Tu email" required>
-    <textarea name="message" placeholder="Tu mensaje" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-
-  <!-- ICONO INSTAGRAM -->
-  <div class="social-icons">
-    <a href="https://www.instagram.com/energyproductoraok/" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="#E1306C">
-        <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.17.056 1.97.24 2.428.403a4.92 4.92 0 011.694 1.044 4.92 4.92 0 011.044 1.694c.163.458.347 1.258.403 2.428.058 1.265.069 1.645.069 4.849s-.012 3.584-.07 4.849c-.056 1.17-.24 1.97-.403 2.428a4.92 4.92 0 01-1.044 1.694 4.92 4.92 0 01-1.694 1.044c-.458.163-1.258.347-2.428.403-1.265.058-1.645.069-4.849.069s-3.584-.012-4.849-.07c-1.17-.056-1.97-.24-2.428-.403a4.902 4.902 0 01-2.738-2.738c-.163-.458-.347-1.258-.403-2.428C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.849c.056-1.17.24-1.97.403-2.428a4.902 4.902 0 012.738-2.738c.458-.163 1.258-.347 2.428-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.78.13 4.84.312 4.042.608a7.085 7.085 0 00-2.557 1.636A7.092 7.092 0 00.608 4.042c-.296.798-.478 1.738-.536 3.01C.013 8.332 0 8.741 0 12c0 3.259.013 3.668.072 4.948.058 1.272.24 2.212.536 3.01a7.092 7.092 0 001.636 2.557 7.085 7.085 0 002.557 1.636c.798.296 1.738.478 3.01.536C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.272-.058 2.212-.24 3.01-.536a7.085 7.085 0 002.557-1.636 7.092 7.092 0 001.636-2.557c.296-.798.478-1.738.536-3.01.058-1.28.072-1.689.072-4.948s-.013-3.668-.072-4.948c-.058-1.272-.24-2.212-.536-3.01a7.092 7.092 0 00-1.636-2.557A7.085 7.085 0 0019.958.608c-.798-.296-1.738-.478-3.01-.536C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
-      </svg>
-    </a>
-  </div>
-</div>
-
-<footer>
-  &copy; 2025 Energy Productora
-</footer>
 
 <script>
-  // ===== ANIMAR APARICIÓN FORM =====
-  window.addEventListener('load', () => {
-    const form = document.querySelector('.contacto form');
-    form.classList.add('visible');
+  const form = document.getElementById('contact-form');
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+  const closeModal = document.getElementById('close-modal');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        form.reset();
+        modalMessage.textContent = "✅ Mensaje enviado con éxito";
+        modal.style.display = 'flex';
+        setTimeout(() => { modal.style.display = 'none'; }, 3000);
+      } else {
+        modalMessage.textContent = "❌ Error al enviar. Intenta de nuevo.";
+        modal.style.display = 'flex';
+      }
+    } catch(error){
+      modalMessage.textContent = "⚠️ Ocurrió un error. Revisa tu conexión.";
+      modal.style.display = 'flex';
+    }
   });
 
-  // ===== PARTICULAS SUTILES =====
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let particlesArray = [];
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 4 + 1;
-      this.speedX = (Math.random() - 0.5) * 1;
-      this.speedY = (Math.random() - 0.5) * 1;
-      this.color = `rgba(0,102,204,${Math.random()*0.3 + 0.1})`;
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  }
-
-  function initParticles() {
-    particlesArray = [];
-    for(let i=0;i<100;i++) particlesArray.push(new Particle());
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particlesArray.forEach(p=>{p.update();p.draw();});
-    requestAnimationFrame(animateParticles);
-  }
-
-  initParticles();
-  animateParticles();
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
 </script>
-</body>
-</html>
