@@ -1,302 +1,165 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Negocio Azul - Fullpage Profesional</title>
-<style>
-  /* Colores en escala de azules */
-  :root {
-    --azul-oscuro: #0d1b2a;
-    --azul-medio: #1b263b;
-    --azul-claro: #415a77;
-    --azul-suave: #778da9;
-    --blanco: #f0f0f0;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Productora Energy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0e7ff;
+      margin: 0;
+      padding: 0;
+    }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
+    .contact-section {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #0b3d91;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      color: white;
+      position: relative;
+    }
 
-  html, body {
-    height: 100%;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-  }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-  body {
-    color: var(--blanco);
-    background: linear-gradient(-45deg, var(--azul-medio), var(--azul-claro), var(--azul-suave), var(--azul-medio));
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-  }
+    .contact-section p.description {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  @keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-  }
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--azul-oscuro);
-    padding: 15px 0;
-    text-align: center;
-  }
+    .contact-section input,
+    .contact-section textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      width: 100%;
+    }
 
-  nav a {
-    color: var(--blanco);
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
+    .contact-section button {
+      background-color: #3b6fb0;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-  nav a:hover {
-    color: var(--azul-suave);
-  }
+    .contact-section button:hover {
+      background-color: #2d5591;
+    }
 
-  .fullpage {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-  }
+    /* Mensaje de confirmación */
+    .confirmation-message {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #00cc66;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.5s, top 0.5s;
+    }
 
-  section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+    .confirmation-message.show {
+      top: -90px;
+      opacity: 1;
+    }
 
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    /* Icono de check */
+    .check-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid white;
+      position: relative;
+      transform: rotate(45deg);
+    }
 
-  .inicio {
-    background: linear-gradient(to right, var(--azul-medio), var(--azul-claro));
-  }
+    .check-icon::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      width: 6px;
+      height: 12px;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+    }
 
-  .inicio h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-  }
-
-  .inicio h1.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .servicios {
-    background-color: var(--azul-suave);
-    color: var(--blanco);
-  }
-
-  .servicio-item {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: var(--azul-medio);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, transform 0.3s ease;
-  }
-
-  .servicio-item:hover {
-    transform: translateY(0) scale(1.05);
-  }
-
-  .servicio-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .sobre-nosotros {
-    background-color: var(--azul-claro);
-    color: var(--blanco);
-  }
-
-  .contacto form {
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .contacto form.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .contacto input, .contacto textarea {
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-  }
-
-  .contacto button {
-    padding: 10px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .contacto button:hover {
-    background-color: var(--azul-claro);
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    width: 100%;
-  }
-
-  /* Botón ir al inicio */
-  #topButton {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    padding: 12px 18px;
-    font-size: 16px;
-    border: none;
-    border-radius: 50px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 1001;
-  }
-
-  #topButton:hover {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-</style>
+  </style>
 </head>
 <body>
 
-<header>
-  <h2>Negocio Azul</h2>
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#sobre-nosotros">Sobre Nosotros</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-</header>
-
-<div class="fullpage">
-  <section id="inicio" class="inicio">
-    <h1>Bienvenido a Negocio Azul</h1>
-    <p>Ofrecemos soluciones profesionales con calidad y confianza.</p>
-  </section>
-
-  <section id="servicios" class="servicios">
-    <h2>Nuestros Servicios</h2>
-    <div class="servicio-item">
-      <h3>Consultoría</h3>
-      <p>Asesoramiento experto para mejorar tu negocio y alcanzar tus metas.</p>
+  <div class="contact-section">
+    <div class="confirmation-message" id="confirmationMessage">
+      <span class="check-icon"></span> ¡Mensaje enviado!
     </div>
-    <div class="servicio-item">
-      <h3>Desarrollo Web</h3>
-      <p>Diseño y creación de páginas web profesionales y dinámicas.</p>
-    </div>
-    <div class="servicio-item">
-      <h3>Marketing Digital</h3>
-      <p>Estrategias digitales para aumentar tu presencia online y clientes.</p>
-    </div>
-  </section>
 
-  <section id="sobre-nosotros" class="sobre-nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p style="max-width:800px;">
-      Somos un equipo comprometido con brindar soluciones de calidad. Nuestro objetivo es impulsar el crecimiento de tu negocio mediante tecnología y estrategias efectivas.
-    </p>
-  </section>
+    <h2>Contáctanos</h2>
+    <p class="description">Envía tu mensaje y nos pondremos en contacto contigo.</p>
 
-  <section id="contacto" class="contacto">
-    <h2>Contacto</h2>
-    <form onsubmit="alert('¡Gracias por contactarnos!'); return false;">
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo electrónico" required>
-      <textarea rows="5" placeholder="Mensaje" required></textarea>
-      <button type="submit">Enviar</button>
+    <form id="contactForm" action="https://formspree.io/f/mandvkwv" method="POST">
+      <input type="text" name="name" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo electrónico" required>
+      <textarea name="message" placeholder="Tu mensaje" rows="6" required></textarea>
+      <button type="submit">Enviar Mensaje</button>
     </form>
-  </section>
 
-  <footer>
-    &copy; 2025 Negocio Azul. Todos los derechos reservados.
-  </footer>
-</div>
+    <p style="text-align:center; margin-top:20px; font-size:14px;">
+      📧 Todos los mensajes llegarán a <strong>productoraenergy@gmail.com</strong>
+    </p>
+  </div>
 
-<button id="topButton" onclick="scrollToTop()">↑ Inicio</button>
+  <script>
+    const form = document.getElementById('contactForm');
+    const confirmation = document.getElementById('confirmationMessage');
 
-<script>
-  // Scroll suave para el menú
-  const links = document.querySelectorAll('nav a');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
 
-  // Animaciones al aparecer las secciones
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        if(entry.target.id === 'inicio'){
-          entry.target.querySelector('h1').classList.add('visible');
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          confirmation.classList.add('show'); // mostrar mensaje
+          form.reset(); // limpiar campos
+          setTimeout(() => {
+            confirmation.classList.remove('show'); // ocultar mensaje
+          }, 3000);
+        } else {
+          alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
         }
-      }
+      }).catch(error => {
+        alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente.');
+      });
     });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('section, .servicio-item, .contacto form').forEach(el => {
-    observer.observe(el);
-  });
-
-  // Botón ir al inicio
-  const topButton = document.getElementById('topButton');
-  window.addEventListener('scroll', () => {
-    topButton.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
-
-  function scrollToTop() {
-    document.querySelector('#inicio').scrollIntoView({behavior: 'smooth'});
-  }
-</script>
+  </script>
 
 </body>
 </html>
