@@ -292,6 +292,51 @@
       height: 80px;
     }
   }
+
+  /* ===== MODO OSCURO AUTOMÁTICO ===== */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(-45deg, #0a0f1a, #1a2233, #223044, #0a0f1a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #e0e0e0;
+    }
+
+    header {
+      background-color: #0a0f1a;
+    }
+
+    nav a {
+      color: #e0e0e0;
+    }
+
+    nav a:hover {
+      color: #778da9;
+    }
+
+    .servicio-item {
+      background-color: #1a2233;
+      color: #f0f0f0;
+    }
+
+    .sobre-nosotros {
+      background-color: #223044;
+    }
+
+    .contacto-info {
+      color: #e0e0e0;
+    }
+
+    footer {
+      background-color: #0a0f1a;
+      color: #aaa;
+    }
+
+    #topButton {
+      background-color: #1a2233;
+      color: #f0f0f0;
+    }
+  }
 </style>
 </head>
 <body>
