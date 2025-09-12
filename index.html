@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energy Productora - Slider Premium con Miniaturas</title>
+<title>Energy Productora</title>
 <style>
 :root {
   --azul-oscuro: #0d1b2a;
@@ -34,17 +34,32 @@ section.visible{opacity:1;transform:translateY(0);}
 .servicios{background-color:var(--azul-suave);color:var(--blanco);padding-bottom:60px;}
 .servicio-text{max-width:900px;text-align:left;margin:0 auto 30px auto;font-size:1.05rem;line-height:1.6;background:rgba(255,255,255,0.03);padding:22px;border-radius:10px;}
 
-/* SLIDER PREMIUM CON MINIATURAS */
-.slider-container{max-width:1000px;margin:30px auto;position:relative;overflow:hidden;border-radius:10px;}
-.slider-slide{position:absolute;top:0;left:0;width:100%;height:500px;opacity:0;transition:opacity .8s ease-in-out;}
-.slider-slide.active{opacity:1;z-index:2;}
-.slider-slide img,.slider-slide iframe{width:100%;height:100%;object-fit:cover;border-radius:10px;}
-.slider-prev,.slider-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;font-size:2rem;padding:10px;border-radius:50%;cursor:pointer;z-index:10;}
-.slider-prev{left:10px;} .slider-next{right:10px;}
-.slider-thumbnails-container{overflow:hidden;margin-top:15px;}
-.slider-thumbnails{display:flex;transition:transform .5s ease;gap:10px;}
-.slider-thumbnails img{width:80px;height:50px;object-fit:cover;cursor:pointer;border:2px solid transparent;border-radius:6px;transition:0.3s;}
-.slider-thumbnails img.active-thumb{border-color:#fff;transform:scale(1.05);}
+/* GALERÍA CON MARCO INDIVIDUAL */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.galeria-item {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.galeria-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+.galeria-item img, .galeria-item iframe {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+@media(max-width:768px){.galeria-item img, .galeria-item iframe{height:200px;}}
+@media(max-width:480px){.galeria-item img, .galeria-item iframe{height:150px;}}
 
 /* SOBRE NOSOTROS */
 .sobre-nosotros p{max-width:800px;margin-bottom:20px;line-height:1.6;}
@@ -63,8 +78,6 @@ section.visible{opacity:1;transform:translateY(0);}
 footer{text-align:center;padding:20px;background-color:var(--azul-oscuro);color:var(--blanco);width:100%;}
 #topButton{position:fixed;bottom:30px;right:30px;padding:12px 18px;font-size:16px;border:none;border-radius:50px;background-color:var(--azul-oscuro);color:var(--blanco);cursor:pointer;opacity:0.7;transition:opacity .3s, transform .3s;z-index:1001;}
 #topButton:hover{opacity:1;transform:scale(1.1);}
-@media(max-width:768px){.slider-slide{height:300px;}.slider-thumbnails img{width:60px;height:40px;}}
-@media(max-width:480px){.slider-slide{height:250px;}.slider-thumbnails img{width:50px;height:35px;}}
 </style>
 </head>
 <body>
@@ -92,27 +105,25 @@ footer{text-align:center;padding:20px;background-color:var(--azul-oscuro);color:
 <p>En <strong>Energy Productora de Eventos Sociales</strong> ofrecemos un servicio integral que abarca desde la planificación hasta la organización completa de cada evento, garantizando excelencia en cada detalle. Nos especializamos tanto en eventos corporativos —como fiestas de fin de año, congresos, workshops, conferencias, lanzamientos de productos e inauguraciones— como en eventos sociales, incluyendo bodas, fiestas de 15, celebraciones de egresados e infantiles. Nuestra experiencia, creatividad y compromiso aseguran que cada ocasión se convierta en un momento único y memorable.</p>
 </div>
 
-<!-- SLIDER PREMIUM -->
-<div class="slider-container">
-  <div class="slider-slide active"><img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" alt="Imagen 1"></div>
-  <div class="slider-slide"><img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl" alt="Imagen 2"></div>
-  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M/preview" frameborder="0" allowfullscreen></iframe></div>
-  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/12FwX8RJ4Fmnlqx22y-1YwXC2w2SV1FBw/preview" frameborder="0" allowfullscreen></iframe></div>
-  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/1B-NpWLukTLrP_sB59is3mF_n7pIYgeAv/preview" frameborder="0" allowfullscreen></iframe></div>
-
-  <button class="slider-prev">‹</button>
-  <button class="slider-next">›</button>
-
-  <div class="slider-thumbnails-container">
-    <div class="slider-thumbnails">
-      <img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" class="active-thumb">
-      <img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl">
-      <img src="https://drive.google.com/uc?export=view&id=1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M">
-      <img src="https://drive.google.com/uc?export=view&id=12FwX8RJ4Fmnlqx22y-1YwXC2w2SV1FBw">
-      <img src="https://drive.google.com/uc?export=view&id=1B-NpWLukTLrP_sB59is3mF_n7pIYgeAv">
-    </div>
+<!-- GALERÍA DE IMÁGENES Y VIDEOS CON MARCO INDIVIDUAL -->
+<div class="galeria">
+  <div class="galeria-item">
+    <img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" alt="Evento 1">
+  </div>
+  <div class="galeria-item">
+    <img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl" alt="Evento 2">
+  </div>
+  <div class="galeria-item">
+    <iframe src="https://drive.google.com/file/d/1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M/preview" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="galeria-item">
+    <iframe src="https://drive.google.com/file/d/12FwX8RJ4Fmnlqx22y-1YwXC2w2SV1FBw/preview" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="galeria-item">
+    <iframe src="https://drive.google.com/file/d/1B-NpWLukTLrP_sB59is3mF_n7pIYgeAv/preview" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
+</section>
 
 <section id="sobre-nosotros" class="sobre-nosotros">
 <h2>Sobre Nosotros</h2>
@@ -140,6 +151,7 @@ footer{text-align:center;padding:20px;background-color:var(--azul-oscuro);color:
 </section>
 
 <footer>&copy; 2025 Energy Productora. Todos los derechos reservados.</footer>
+
 </div>
 
 <button id="topButton" onclick="scrollToTop()">↑ Inicio</button>
@@ -156,54 +168,6 @@ document.querySelectorAll('section, .contacto-info').forEach(el=>observer.observ
 const topButton=document.getElementById('topButton');
 window.addEventListener('scroll',()=>{topButton.style.display=window.scrollY>300?'block':'none';});
 function scrollToTop(){document.querySelector('#inicio').scrollIntoView({behavior:'smooth'});}
-
-// SLIDER PREMIUM CON MINIATURAS DESLIZANTES
-(function(){
-const slides=document.querySelectorAll('.slider-slide');
-const thumbs=document.querySelectorAll('.slider-thumbnails img');
-const prevBtn=document.querySelector('.slider-prev');
-const nextBtn=document.querySelector('.slider-next');
-const thumbContainer=document.querySelector('.slider-thumbnails');
-let index=0;
-let autoSlide;
-
-function showSlide(i){
-  slides.forEach(s=>s.classList.remove('active'));
-  slides[i].classList.add('active');
-  thumbs.forEach(t=>t.classList.remove('active-thumb'));
-  thumbs[i].classList.add('active-thumb');
-  index=i;
-  // Centrar miniatura activa
-  const thumbWidth=thumbs[0].offsetWidth+10; // ancho+gap
-  const containerWidth=thumbContainer.offsetWidth;
-  let scrollPos=thumbWidth*i - (containerWidth-thumbWidth)/2;
-  thumbContainer.style.transform=`translateX(${-scrollPos}px)`;
-}
-
-function nextSlide(){showSlide((index+1)%slides.length);}
-function prevSlide(){showSlide((index-1+slides.length)%slides.length);}
-
-nextBtn.addEventListener('click',()=>{nextSlide();resetAutoSlide();});
-prevBtn.addEventListener('click',()=>{prevSlide();resetAutoSlide();});
-thumbs.forEach((t,i)=>t.addEventListener('click',()=>{showSlide(i);resetAutoSlide();}));
-
-function startAutoSlide(){autoSlide=setInterval(nextSlide,4000);}
-function resetAutoSlide(){clearInterval(autoSlide);startAutoSlide();}
-
-document.querySelector('.slider-container').addEventListener('mouseenter',()=>{clearInterval(autoSlide);});
-document.querySelector('.slider-container').addEventListener('mouseleave',()=>{startAutoSlide();});
-
-// Swipe móvil
-let startX=0;
-document.querySelector('.slider-container').addEventListener('touchstart',e=>{startX=e.touches[0].clientX;});
-document.querySelector('.slider-container').addEventListener('touchend',e=>{
-  let endX=e.changedTouches[0].clientX;
-  if(endX-startX>50){prevSlide();resetAutoSlide();}
-  else if(startX-endX>50){nextSlide();resetAutoSlide();}
-});
-
-startAutoSlide();
-})();
 </script>
 
 </body>
