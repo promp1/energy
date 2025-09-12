@@ -3,463 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Negocio Azul - Fullpage Profesional</title>
+<title>Energy Productora - Slider Premium con Miniaturas</title>
 <style>
-  /* Colores en escala de azules */
-  :root {
-    --azul-oscuro: #0d1b2a;
-    --azul-medio: #1b263b;
-    --azul-claro: #415a77;
-    --azul-suave: #778da9;
-    --blanco: #f0f0f0;
-  }
+:root {
+  --azul-oscuro: #0d1b2a;
+  --azul-medio: #1b263b;
+  --azul-claro: #415a77;
+  --azul-suave: #778da9;
+  --blanco: #f0f0f0;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+html,body{height:100%;scroll-behavior:smooth;overflow-y:scroll;}
+body{
+  color:var(--blanco);
+  background:linear-gradient(-45deg,var(--azul-medio),var(--azul-claro),var(--azul-suave),var(--azul-medio));
+  background-size:400% 400%;
+  animation:gradientBG 15s ease infinite;
+}
+@keyframes gradientBG{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
+header{position:fixed;top:0;width:100%;z-index:1000;background-color:var(--azul-oscuro);padding:15px 0;text-align:center;}
+nav a{color:var(--blanco);margin:0 15px;text-decoration:none;font-weight:bold;transition:color .3s;}
+nav a:hover{color:var(--azul-suave);}
+.fullpage{scroll-snap-type:y mandatory;overflow-y: scroll;height:100vh;}
+section{scroll-snap-align:start;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 20px;text-align:center;opacity:0;transform:translateY(50px);transition:opacity .8s ease-out,transform .8s ease-out;}
+section.visible{opacity:1;transform:translateY(0);}
+.inicio{background:linear-gradient(to right,var(--azul-medio),var(--azul-claro));}
+.inicio h1{font-size:3rem;margin-bottom:20px;opacity:0;transform:translateY(-20px);transition:opacity 1s ease-out,transform 1s ease-out;}
+.inicio h1.visible{opacity:1;transform:translateY(0);}
+.servicios{background-color:var(--azul-suave);color:var(--blanco);padding-bottom:60px;}
+.servicio-text{max-width:900px;text-align:left;margin:0 auto 30px auto;font-size:1.05rem;line-height:1.6;background:rgba(255,255,255,0.03);padding:22px;border-radius:10px;}
 
-  html, body {
-    height: 100%;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-  }
+/* SLIDER PREMIUM CON MINIATURAS */
+.slider-container{max-width:1000px;margin:30px auto;position:relative;overflow:hidden;border-radius:10px;}
+.slider-slide{position:absolute;top:0;left:0;width:100%;height:500px;opacity:0;transition:opacity .8s ease-in-out;}
+.slider-slide.active{opacity:1;z-index:2;}
+.slider-slide img,.slider-slide iframe{width:100%;height:100%;object-fit:cover;border-radius:10px;}
+.slider-prev,.slider-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;border:none;font-size:2rem;padding:10px;border-radius:50%;cursor:pointer;z-index:10;}
+.slider-prev{left:10px;} .slider-next{right:10px;}
+.slider-thumbnails-container{overflow:hidden;margin-top:15px;}
+.slider-thumbnails{display:flex;transition:transform .5s ease;gap:10px;}
+.slider-thumbnails img{width:80px;height:50px;object-fit:cover;cursor:pointer;border:2px solid transparent;border-radius:6px;transition:0.3s;}
+.slider-thumbnails img.active-thumb{border-color:#fff;transform:scale(1.05);}
 
-  body {
-    color: var(--blanco);
-    background: linear-gradient(-45deg, var(--azul-medio), var(--azul-claro), var(--azul-suave), var(--azul-medio));
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-  }
+/* SOBRE NOSOTROS */
+.sobre-nosotros p{max-width:800px;margin-bottom:20px;line-height:1.6;}
 
-  @keyframes gradientBG {
-    0% {background-position:0% 50%;}
-    50% {background-position:100% 50%;}
-    100% {background-position:0% 50%;}
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--azul-oscuro);
-    padding: 15px 0;
-    text-align: center;
-  }
-
-  nav a {
-    color: var(--blanco);
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-
-  nav a:hover {
-    color: var(--azul-suave);
-  }
-
-  .fullpage {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-  }
-
-  section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .inicio {
-    background: linear-gradient(to right, var(--azul-medio), var(--azul-claro));
-  }
-
-  .inicio h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-  }
-
-  .inicio h1.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .servicios {
-    background-color: var(--azul-suave);
-    color: var(--blanco);
-  }
-
-  .servicio-item {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: var(--azul-medio);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, transform 0.3s ease;
-  }
-
-  .servicio-item:hover {
-    transform: translateY(0) scale(1.05);
-  }
-
-  .servicio-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .sobre-nosotros {
-    background-color: var(--azul-claro);
-    color: var(--blanco);
-  }
-
-  /* CONTACTO */
-  .contacto-info {
-    max-width: 600px;
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .contacto-info.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Botones WhatsApp */
-  .whatsapp-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-  }
-
-  .whatsapp-buttons a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--blanco);
-    font-weight: bold;
-    font-size: 1rem;
-    transition: transform 0.3s;
-  }
-
-  .whatsapp-buttons a img {
-    width: 70px;
-    height: 70px;
-    background-color: #25D366;
-    border-radius: 50%;
-    padding: 12px;
-    margin-bottom: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: bounce 2s infinite;
-  }
-
-  .whatsapp-buttons a:hover img {
-    transform: scale(1.15);
-    box-shadow: 0 0 15px #25D366;
-  }
-
-  /* Instagram */
-  .redes-sociales {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .redes-sociales a img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: bounce 2.2s infinite;
-  }
-
-  .redes-sociales a:hover img {
-    transform: scale(1.15);
-    box-shadow: 0 0 15px #E1306C;
-  }
-
-  /* Animación flotante */
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    width: 100%;
-  }
-
-  /* Botón ir al inicio */
-  #topButton {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    padding: 12px 18px;
-    font-size: 16px;
-    border: none;
-    border-radius: 50px;
-    background-color: var(--azul-oscuro);
-    color: var(--blanco);
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 1001;
-  }
-
-  #topButton:hover {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .inicio h1 {
-      font-size: 2.2rem;
-    }
-
-    .contacto-info {
-      font-size: 1rem;
-      padding: 0 15px;
-    }
-
-    .whatsapp-buttons {
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .whatsapp-buttons a img {
-      width: 80px;
-      height: 80px;
-      padding: 14px;
-    }
-
-    .whatsapp-buttons a {
-      font-size: 1.1rem;
-    }
-
-    .redes-sociales a img {
-      width: 70px;
-      height: 70px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .inicio h1 {
-      font-size: 1.8rem;
-    }
-
-    .whatsapp-buttons a img {
-      width: 90px;
-      height: 90px;
-      padding: 16px;
-    }
-
-    .redes-sociales a img {
-      width: 80px;
-      height: 80px;
-    }
-  }
-
-  /* ===== MODO OSCURO AUTOMÁTICO ===== */
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: linear-gradient(-45deg, #0a0f1a, #1a2233, #223044, #0a0f1a);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #e0e0e0;
-    }
-
-    header {
-      background-color: #0a0f1a;
-    }
-
-    nav a {
-      color: #e0e0e0;
-    }
-
-    nav a:hover {
-      color: #778da9;
-    }
-
-    .servicio-item {
-      background-color: #1a2233;
-      color: #f0f0f0;
-    }
-
-    .sobre-nosotros {
-      background-color: #223044;
-    }
-
-    .contacto-info {
-      color: #e0e0e0;
-    }
-
-    footer {
-      background-color: #0a0f1a;
-      color: #aaa;
-    }
-
-    #topButton {
-      background-color: #1a2233;
-      color: #f0f0f0;
-    }
-  }
+/* CONTACTO */
+.contacto-info{max-width:600px;text-align:center;font-size:1.2rem;line-height:1.6;opacity:0;transform:translateY(30px);transition:opacity .8s ease-out,transform .8s ease-out;}
+.contacto-info.visible{opacity:1;transform:translateY(0);}
+.whatsapp-buttons{display:flex;justify-content:center;gap:25px;margin:20px 0;flex-wrap:wrap;}
+.whatsapp-buttons a{display:flex;flex-direction:column;align-items:center;text-decoration:none;color:var(--blanco);font-weight:bold;font-size:1rem;transition: transform .3s;}
+.whatsapp-buttons a img{width:70px;height:70px;background-color:#25D366;border-radius:50%;padding:12px;margin-bottom:8px;transition: transform .3s, box-shadow .3s;animation:bounce 2s infinite;}
+.whatsapp-buttons a:hover img{transform:scale(1.15);box-shadow:0 0 15px #25D366;}
+.redes-sociales{display:flex;justify-content:center;margin-top:20px;}
+.redes-sociales a img{width:60px;height:60px;border-radius:50%;transition:transform .3s,box-shadow .3s;animation:bounce 2.2s infinite;}
+.redes-sociales a:hover img{transform:scale(1.15);box-shadow:0 0 15px #E1306C;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+footer{text-align:center;padding:20px;background-color:var(--azul-oscuro);color:var(--blanco);width:100%;}
+#topButton{position:fixed;bottom:30px;right:30px;padding:12px 18px;font-size:16px;border:none;border-radius:50px;background-color:var(--azul-oscuro);color:var(--blanco);cursor:pointer;opacity:0.7;transition:opacity .3s, transform .3s;z-index:1001;}
+#topButton:hover{opacity:1;transform:scale(1.1);}
+@media(max-width:768px){.slider-slide{height:300px;}.slider-thumbnails img{width:60px;height:40px;}}
+@media(max-width:480px){.slider-slide{height:250px;}.slider-thumbnails img{width:50px;height:35px;}}
 </style>
 </head>
 <body>
 
 <header>
-  <h2>Negocio Azul</h2>
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#sobre-nosotros">Sobre Nosotros</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+<h2>Energy Productora</h2>
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#servicios">Servicios</a>
+<a href="#sobre-nosotros">Sobre Nosotros</a>
+<a href="#contacto">Contacto</a>
+</nav>
 </header>
 
 <div class="fullpage">
-  <section id="inicio" class="inicio">
-    <h1>Bienvenido a Negocio Azul</h1>
-    <p>Ofrecemos soluciones profesionales con calidad y confianza.</p>
-  </section>
 
-  <section id="servicios" class="servicios">
-    <h2>Nuestros Servicios</h2>
-    <div class="servicio-item">
-      <h3>Consultoría</h3>
-      <p>Asesoramiento experto para mejorar tu negocio y alcanzar tus metas.</p>
+<section id="inicio" class="inicio">
+<h1>Bienvenido a Energy Productora</h1>
+<p>Ofrecemos soluciones profesionales con calidad y confianza.</p>
+</section>
+
+<section id="servicios" class="servicios">
+<h2>Servicios</h2>
+<div class="servicio-text">
+<p>En <strong>Energy Productora de Eventos Sociales</strong> ofrecemos un servicio integral que abarca desde la planificación hasta la organización completa de cada evento, garantizando excelencia en cada detalle. Nos especializamos tanto en eventos corporativos —como fiestas de fin de año, congresos, workshops, conferencias, lanzamientos de productos e inauguraciones— como en eventos sociales, incluyendo bodas, fiestas de 15, celebraciones de egresados e infantiles. Nuestra experiencia, creatividad y compromiso aseguran que cada ocasión se convierta en un momento único y memorable.</p>
+</div>
+
+<!-- SLIDER PREMIUM -->
+<div class="slider-container">
+  <div class="slider-slide active"><img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" alt="Imagen 1"></div>
+  <div class="slider-slide"><img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl" alt="Imagen 2"></div>
+  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M/preview" frameborder="0" allowfullscreen></iframe></div>
+  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/12FwX8RJ4Fmnlqx22y-1YwXC2w2SV1FBw/preview" frameborder="0" allowfullscreen></iframe></div>
+  <div class="slider-slide"><iframe src="https://drive.google.com/file/d/1B-NpWLukTLrP_sB59is3mF_n7pIYgeAv/preview" frameborder="0" allowfullscreen></iframe></div>
+
+  <button class="slider-prev">‹</button>
+  <button class="slider-next">›</button>
+
+  <div class="slider-thumbnails-container">
+    <div class="slider-thumbnails">
+      <img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" class="active-thumb">
+      <img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl">
+      <img src="https://drive.google.com/uc?export=view&id=1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M">
+      <img src="https://drive.google.com/uc?export=view&id=12FwX8RJ4Fmnlqx22y-1YwXC2w2SV1FBw">
+      <img src="https://drive.google.com/uc?export=view&id=1B-NpWLukTLrP_sB59is3mF_n7pIYgeAv">
     </div>
-    <div class="servicio-item">
-      <h3>Desarrollo Web</h3>
-      <p>Diseño y creación de páginas web profesionales y dinámicas.</p>
-    </div>
-    <div class="servicio-item">
-      <h3>Marketing Digital</h3>
-      <p>Estrategias digitales para aumentar tu presencia online y clientes.</p>
-    </div>
-  </section>
+  </div>
+</div>
 
-  <section id="sobre-nosotros" class="sobre-nosotros">
-    <h2>Sobre Nosotros</h2>
-    <p style="max-width:800px; margin-bottom: 25px;">
-      En Energy Productora de Eventos Sociales nos especializamos en la planificación, organización y ejecución de experiencias únicas que superan las expectativas de nuestros clientes. Nuestro equipo profesional trabaja con compromiso, creatividad y excelencia en cada detalle, garantizando eventos memorables y de la más alta calidad. Nos distingue la seriedad, la innovación constante y la capacidad de transformar cada ocasión en un momento extraordinario.
-    </p>
+<section id="sobre-nosotros" class="sobre-nosotros">
+<h2>Sobre Nosotros</h2>
+<p>En Energy Productora de Eventos Sociales nos especializamos en la planificación, organización y ejecución de experiencias únicas que superan las expectativas de nuestros clientes. Nuestro equipo profesional trabaja con compromiso, creatividad y excelencia en cada detalle, garantizando eventos memorables y de la más alta calidad. Nos distingue la seriedad, la innovación constante y la capacidad de transformar cada ocasión en un momento extraordinario.</p>
+<h2>Misión, Visión y Valores</h2>
+<p>Nuestra misión es brindar un servicio integral que combine creatividad, profesionalismo y dedicación, asegurando que cada evento sea una experiencia inolvidable. Aspiramos a ser referentes en la industria de la producción de eventos sociales, destacándonos por la innovación y la excelencia en todo lo que hacemos. Nuestros valores se basan en la confianza, la responsabilidad, el trabajo en equipo y la búsqueda constante de la satisfacción plena de nuestros clientes.</p>
+</section>
 
-    <h2>Misión, Visión y Valores</h2>
-    <p style="max-width:800px;">
-      Nuestra misión es brindar un servicio integral que combine creatividad, profesionalismo y dedicación, asegurando que cada evento sea una experiencia inolvidable. Aspiramos a ser referentes en la industria de la producción de eventos sociales, destacándonos por la innovación y la excelencia en todo lo que hacemos. Nuestros valores se basan en la confianza, la responsabilidad, el trabajo en equipo y la búsqueda constante de la satisfacción plena de nuestros clientes.
-    </p>
-  </section>
+<section id="contacto" class="contacto">
+<h2>Contacto</h2>
+<div class="contacto-info">
+<p>¡Estamos aquí para ayudarte! No dudes en contactarnos para cualquier pregunta, comentario o sugerencia.</p>
+<p>¿Quieres una respuesta rápida y personalizada?<br>¡Contáctanos por WhatsApp! Estamos aquí para ayudarte.</p>
+<div class="whatsapp-buttons">
+<a href="https://wa.me/543813690042" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">3813690042</a>
+<a href="https://wa.me/543813255750" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">3813255750</a>
+<a href="https://wa.me/543816056205" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">3816056205</a>
+</div>
+<p>También puedes dejarnos un correo electrónico a la siguiente dirección:</p>
+<p><strong>productoraenergy@gmail.com</strong></p>
+<div class="redes-sociales">
+<a href="https://www.instagram.com/energyproductoraok/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+</div>
+</div>
+</section>
 
-  <section id="contacto" class="contacto">
-    <h2>Contacto</h2>
-    <div class="contacto-info">
-      <p>¡Estamos aquí para ayudarte! No dudes en contactarnos para cualquier pregunta, comentario o sugerencia.</p>
-      <p>¿Quieres una respuesta rápida y personalizada?<br>¡Contáctanos por WhatsApp! Estamos aquí para ayudarte.</p>
-      
-      <div class="whatsapp-buttons">
-        <a href="https://wa.me/543813690042" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-          3813690042
-        </a>
-        <a href="https://wa.me/543813255750" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-          3813255750
-        </a>
-        <a href="https://wa.me/543816056205" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-          3816056205
-        </a>
-      </div>
-
-      <p>También puedes dejarnos un correo electrónico a la siguiente dirección:</p>
-      <p><strong>productoraenergy@gmail.com</strong></p>
-
-      <div class="redes-sociales">
-        <a href="https://www.instagram.com/energyproductoraok/" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2025 Negocio Azul. Todos los derechos reservados.
-  </footer>
+<footer>&copy; 2025 Energy Productora. Todos los derechos reservados.</footer>
 </div>
 
 <button id="topButton" onclick="scrollToTop()">↑ Inicio</button>
 
 <script>
-  // Scroll suave para el menú
-  const links = document.querySelectorAll('nav a');
-  links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      target.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+// Scroll suave
+document.querySelectorAll('nav a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});});});
 
-  // Animaciones al aparecer las secciones
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        if(entry.target.id === 'inicio'){
-          entry.target.querySelector('h1').classList.add('visible');
-        }
-      }
-    });
-  }, { threshold: 0.3 });
+// Animaciones
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:0.25});
+document.querySelectorAll('section, .contacto-info').forEach(el=>observer.observe(el));
 
-  document.querySelectorAll('section, .servicio-item, .contacto-info').forEach(el => {
-    observer.observe(el);
-  });
+// Botón ir arriba
+const topButton=document.getElementById('topButton');
+window.addEventListener('scroll',()=>{topButton.style.display=window.scrollY>300?'block':'none';});
+function scrollToTop(){document.querySelector('#inicio').scrollIntoView({behavior:'smooth'});}
 
-  // Botón ir al inicio
-  const topButton = document.getElementById('topButton');
-  window.addEventListener('scroll', () => {
-    topButton.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
+// SLIDER PREMIUM CON MINIATURAS DESLIZANTES
+(function(){
+const slides=document.querySelectorAll('.slider-slide');
+const thumbs=document.querySelectorAll('.slider-thumbnails img');
+const prevBtn=document.querySelector('.slider-prev');
+const nextBtn=document.querySelector('.slider-next');
+const thumbContainer=document.querySelector('.slider-thumbnails');
+let index=0;
+let autoSlide;
 
-  function scrollToTop() {
-    document.querySelector('#inicio').scrollIntoView({behavior: 'smooth'});
-  }
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove('active'));
+  slides[i].classList.add('active');
+  thumbs.forEach(t=>t.classList.remove('active-thumb'));
+  thumbs[i].classList.add('active-thumb');
+  index=i;
+  // Centrar miniatura activa
+  const thumbWidth=thumbs[0].offsetWidth+10; // ancho+gap
+  const containerWidth=thumbContainer.offsetWidth;
+  let scrollPos=thumbWidth*i - (containerWidth-thumbWidth)/2;
+  thumbContainer.style.transform=`translateX(${-scrollPos}px)`;
+}
+
+function nextSlide(){showSlide((index+1)%slides.length);}
+function prevSlide(){showSlide((index-1+slides.length)%slides.length);}
+
+nextBtn.addEventListener('click',()=>{nextSlide();resetAutoSlide();});
+prevBtn.addEventListener('click',()=>{prevSlide();resetAutoSlide();});
+thumbs.forEach((t,i)=>t.addEventListener('click',()=>{showSlide(i);resetAutoSlide();}));
+
+function startAutoSlide(){autoSlide=setInterval(nextSlide,4000);}
+function resetAutoSlide(){clearInterval(autoSlide);startAutoSlide();}
+
+document.querySelector('.slider-container').addEventListener('mouseenter',()=>{clearInterval(autoSlide);});
+document.querySelector('.slider-container').addEventListener('mouseleave',()=>{startAutoSlide();});
+
+// Swipe móvil
+let startX=0;
+document.querySelector('.slider-container').addEventListener('touchstart',e=>{startX=e.touches[0].clientX;});
+document.querySelector('.slider-container').addEventListener('touchend',e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(endX-startX>50){prevSlide();resetAutoSlide();}
+  else if(startX-endX>50){nextSlide();resetAutoSlide();}
+});
+
+startAutoSlide();
+})();
 </script>
 
 </body>
