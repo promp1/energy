@@ -34,7 +34,7 @@ section.visible{opacity:1;transform:translateY(0);}
 .servicios{background-color:var(--azul-suave);color:var(--blanco);padding-bottom:60px;}
 .servicio-text{max-width:900px;text-align:left;margin:0 auto 30px auto;font-size:1.05rem;line-height:1.6;background:rgba(255,255,255,0.03);padding:22px;border-radius:10px;}
 
-/* GALERÍA CON MARCO INDIVIDUAL */
+/* GALERÍA DE VIDEOS CON MARCO BRILLANTE */
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -47,19 +47,19 @@ section.visible{opacity:1;transform:translateY(0);}
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
 }
 .galeria-item:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 0 25px 5px rgba(0,255,255,0.7);
+  border: 2px solid cyan;
 }
-.galeria-item img, .galeria-item iframe {
+.galeria-item iframe {
   width: 100%;
   height: 250px;
-  object-fit: cover;
 }
-@media(max-width:768px){.galeria-item img, .galeria-item iframe{height:200px;}}
-@media(max-width:480px){.galeria-item img, .galeria-item iframe{height:150px;}}
+@media(max-width:768px){.galeria-item iframe{height:200px;}}
+@media(max-width:480px){.galeria-item iframe{height:150px;}}
 
 /* SOBRE NOSOTROS */
 .sobre-nosotros p{max-width:800px;margin-bottom:20px;line-height:1.6;}
@@ -105,14 +105,8 @@ footer{text-align:center;padding:20px;background-color:var(--azul-oscuro);color:
 <p>En <strong>Energy Productora de Eventos Sociales</strong> ofrecemos un servicio integral que abarca desde la planificación hasta la organización completa de cada evento, garantizando excelencia en cada detalle. Nos especializamos tanto en eventos corporativos —como fiestas de fin de año, congresos, workshops, conferencias, lanzamientos de productos e inauguraciones— como en eventos sociales, incluyendo bodas, fiestas de 15, celebraciones de egresados e infantiles. Nuestra experiencia, creatividad y compromiso aseguran que cada ocasión se convierta en un momento único y memorable.</p>
 </div>
 
-<!-- GALERÍA DE IMÁGENES Y VIDEOS CON MARCO INDIVIDUAL -->
+<!-- GALERÍA DE VIDEOS CON MARCO BRILLANTE -->
 <div class="galeria">
-  <div class="galeria-item">
-    <img src="https://drive.google.com/uc?export=view&id=1wHItXIP4kfgh00vcTMwa-orJwHRvFCLD" alt="Evento 1">
-  </div>
-  <div class="galeria-item">
-    <img src="https://drive.google.com/uc?export=view&id=1WDOeADvs6b2EvyNBfvbQnGsvz9HchkJl" alt="Evento 2">
-  </div>
   <div class="galeria-item">
     <iframe src="https://drive.google.com/file/d/1brnYxhgYJ5gPP3yGUjp5E9mLNHsHij-M/preview" frameborder="0" allowfullscreen></iframe>
   </div>
